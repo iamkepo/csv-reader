@@ -1,15 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import Menubar from 'primevue/menubar'
-import Button from 'primevue/button'
-
-const items = ref([
-  { label: 'Home', icon: 'pi pi-home', to: '/' },
-  { label: 'History', icon: 'pi pi-history', to: '/history' }
-])
-const currentPath = ref(window.location.pathname)
-</script>
-
 <template>
   <div class="card">
     <Menubar :model="items">
@@ -26,3 +14,14 @@ const currentPath = ref(window.location.pathname)
 
   <router-view />
 </template>
+<script setup>
+import { ref, computed } from 'vue'
+import Menubar from 'primevue/menubar'
+import Button from 'primevue/button'
+
+const items = ref([
+  { label: 'Home', icon: 'pi pi-home', to: '/' },
+  { label: 'History', icon: 'pi pi-history', to: '/history' }
+])
+const currentPath = computed(() => window.location.pathname)
+</script>

@@ -1,6 +1,7 @@
 <template>
   <div class="p-4">
     <h3>Historique des fichiers</h3>
+    <Toast />
     <DataTable :value="logs" paginator :rows="10">
       <Column field="filename" header="Nom fichier" />
       <Column field="filesize" header="Taille (octets)" />
@@ -15,11 +16,20 @@ import { ref, onMounted } from "vue";
 import { getLogs } from "../services/logs";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import Toast from "primevue/toast";
+import { useToast } from "primevue/usetoast";
+
+const toast = useToast();
 
 const logs = ref([]);
 
 onMounted(async () => {
-  const res = await getLogs();
-  logs.value = res.data; // Use Axios response data correctly
+  try {
+    const res = await getLogs();
+    logs.value = res.data; // Use Axios response data correctly
+    toast.add({ severity: "success", summary: "Success", detail: "Logs loaded successfully" });
+  } catch (error) {
+    toast.add({ severity: "error", summary: "Error", detail: "Failed to load logs" });
+  }
 });
 </script>
