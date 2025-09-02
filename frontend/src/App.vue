@@ -15,13 +15,15 @@
   <router-view />
 </template>
 <script setup>
-import { ref, computed } from 'vue'
-import Menubar from 'primevue/menubar'
-import Button from 'primevue/button'
+  import { ref, computed } from 'vue'
+  import Menubar from 'primevue/menubar'
+  import Button from 'primevue/button'
+  import { useRouter } from 'vue-router'
 
-const items = ref([
-  { label: 'Home', icon: 'pi pi-home', to: '/' },
-  { label: 'History', icon: 'pi pi-history', to: '/history' }
-])
-const currentPath = computed(() => window.location.pathname)
+  const router = useRouter()
+  const items = ref([
+    { label: 'Home', icon: 'pi pi-home', to: '/' },
+    { label: 'History', icon: 'pi pi-history', to: '/history' }
+  ])
+  const currentPath = computed(() => router.currentRoute.value.path)
 </script>
