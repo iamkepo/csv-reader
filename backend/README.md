@@ -1,5 +1,18 @@
 # Backend
 
+## Docker
+
+```sh
+docker run -d \
+--name tab-reader-postgres \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=tab-reader \
+  -p 5433:5432 \
+  -v ~/pg-data:/var/lib/postgresql/data \
+  postgres:latest
+```
+
 ## Project Setup
 
 ```sh
