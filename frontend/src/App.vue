@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import Menubar from 'primevue/menubar'
+import Button from 'primevue/button'
 
 const items = ref([
   { label: 'Home', icon: 'pi pi-home', to: '/' },
   { label: 'History', icon: 'pi pi-history', to: '/history' }
 ])
+const currentPath = ref(window.location.pathname)
 </script>
 
 <template>
@@ -13,10 +15,10 @@ const items = ref([
     <Menubar :model="items">
       <template #item="{ item }">
         <router-link v-ripple class="flex items-center" :to="item.to">
-          <button type="button" class="p-menubaritem-link flex items-center">
+          <Button :severity="item.to === currentPath ? 'primary' : 'secondary'">
             <i :class="item.icon"></i>
             <span class="ml-2">{{ item.label }}</span>
-          </button>
+          </Button>
         </router-link>
       </template>
     </Menubar>
