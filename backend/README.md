@@ -13,6 +13,12 @@ docker run -d \
   postgres:latest
 ```
 
+If the database doesn't exist, you can create it with:
+
+```sh
+docker exec -it tab-reader-postgres psql -U postgres -c 'CREATE DATABASE "tab-reader";'
+```
+
 ## Project Setup
 
 ```sh
