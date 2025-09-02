@@ -13,7 +13,10 @@ const items = ref([
     <Menubar :model="items">
       <template #item="{ item }">
         <router-link v-ripple class="flex items-center" :to="item.to">
-          <span>{{ item.label }}</span>
+          <button type="button" class="p-menubaritem-link flex items-center">
+            <i :class="item.icon"></i>
+            <span class="ml-2">{{ item.label }}</span>
+          </button>
         </router-link>
       </template>
     </Menubar>
