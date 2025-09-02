@@ -12,11 +12,14 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { getLogs } from "../services/logs";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
 
 const logs = ref([]);
 
 onMounted(async () => {
-  const res = await fetch("/api/logs");
-  logs.value = await res.json();
+  const res = await getLogs();
+  logs.value = res.data; // Use Axios response data correctly
 });
 </script>

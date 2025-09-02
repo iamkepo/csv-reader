@@ -17,19 +17,17 @@
 
 <script setup>
 import { ref } from "vue";
-import { FileUpload } from "primevue/fileupload";
-import { DataTable } from "primevue/datatable";
-import { Column } from "primevue/column";
+import FileUpload from "primevue/fileupload";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
+import { uploadFile } from "../services/uploadFile";
 
 const data = ref([]);
 const columns = ref([]);
 
 async function onUpload(event) {
-  const formData = new FormData();
-  formData.append("file", event.files[0]);
-  
-  const res = await fetch("/api/upload", { method: "POST", body: formData });
-  const json = await res.json();
+  const res = await uploadFile(event.files[0]);
+  const json = res.data;
 
   data.value = json.rows;
   columns.value = Object.keys(json.rows[0] || {});
