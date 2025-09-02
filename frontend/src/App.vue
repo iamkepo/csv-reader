@@ -32,12 +32,9 @@ const currentView = computed(() => {
 <template>
   <div class="card">
     <Menubar :model="items">
-      <template #item="{ item, root }">
+      <template #item="{ item }">
         <a v-ripple class="flex items-center" :href="'#' + item.to">
           <span>{{ item.label }}</span>
-          <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
-          <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-          <i v-if="item.items" :class="['pi pi-angle-down ml-auto', { 'pi-angle-down': root, 'pi-angle-right': !root }]"></i>
         </a>
       </template>
     </Menubar>
