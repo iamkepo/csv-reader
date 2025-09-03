@@ -4,6 +4,8 @@ import { koaBody } from "koa-body";
 import fs from "fs";
 import csv from "csv-parser";
 import cors from "@koa/cors";
+import pkg from "xlsx";
+const { readFile, utils } = pkg;
 import { pool, initDb } from "./db.js"; // connexion PostgreSQL
 
 const app = new Koa();
@@ -33,11 +35,20 @@ router.post("/api/upload", koaBody({ multipart: true }), async (ctx) => {
   }
 
   const start = Date.now();
-  const results = [];
+  let results = [];
+  const ext = fileName?.split(".").pop()?.toLowerCase();
 
-  const stream = fs.createReadStream(filePath).pipe(csv());
-  for await (const row of stream) {
-    results.push(row);
+  if (ext === "csv") {
+    const stream = fs.createReadStream(filePath).pipe(csv());
+    for await (const row of stream) {
+      results.push(row);
+    }
+  } else if (ext === "xlsx") {
+    const workbook = readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    results = utils.sheet_to_json(workbook.Sheets[sheetName], { defval: "" });
+  } else {
+    ctx.throw(400, "Format non supporté");
   }
 
   const duration = Date.now() - start;

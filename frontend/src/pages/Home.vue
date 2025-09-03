@@ -6,7 +6,7 @@
       url="/api/upload"
       :customUpload="true"
       @uploader="onUpload"
-      accept=".csv"
+      accept=".csv, .xlsx"
     />
     <Toast />
     
