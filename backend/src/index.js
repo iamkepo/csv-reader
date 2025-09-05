@@ -8,6 +8,7 @@ const app = new Koa();
 // Allow cross-origin requests from the Vite dev server
 app.use(cors());
 
+
 getRoutes(router);
 
 app.use(router.routes()).use(router.allowedMethods());

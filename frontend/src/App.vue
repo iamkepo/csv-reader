@@ -23,7 +23,8 @@
   const router = useRouter()
   const items = ref([
     { label: 'Home', icon: 'pi pi-home', to: '/' },
-    { label: 'History', icon: 'pi pi-history', to: '/history' }
+    { label: 'History', icon: 'pi pi-history', to: '/history' },
+    { label: 'User Details', icon: 'pi pi-user', to: '/user/123' }
   ])
   const currentPath = computed(() => router.currentRoute.value.path)
 </script>

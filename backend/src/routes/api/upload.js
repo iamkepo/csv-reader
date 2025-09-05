@@ -8,7 +8,7 @@ import { create } from "../../lib/model.js";
 const { readFile, utils } = pkg;
 const router = new Router();
 
-router.post("/api/upload", koaBody({ multipart: true }), async (ctx) => {
+router.post("/api/upload", koaBody({ multipart: true, formidable: { maxFileSize: 524288000 } }), async (ctx) => {
   const uploaded = ctx.request.files?.file;
   const file = Array.isArray(uploaded) ? uploaded[0] : uploaded;
 
