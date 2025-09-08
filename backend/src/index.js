@@ -16,6 +16,7 @@ app.use(router.routes()).use(router.allowedMethods());
 // Initialize DB then start server
 try {
   await initDb();
+  console.log("✅ DB initialized");
 } catch (e) {
   console.error("❌ DB init failed:", e.message);
 }

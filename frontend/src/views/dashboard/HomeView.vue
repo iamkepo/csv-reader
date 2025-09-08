@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <DashboardLayout>
     <h3>Upload un fichier CSV</h3>
     <FileUpload
       name="file"
@@ -8,13 +8,12 @@
       @uploader="onUpload"
       accept=".csv, .xlsx"
     />
-    <Toast />
     
     <h3 v-if="data.length">Preview du CSV</h3>
     <DataTable :value="data">
       <Column v-for="(col, i) in columns" :key="i" :field="col" :header="col" />
     </DataTable>
-  </div>
+  </DashboardLayout>
 </template>
 
 <script setup>
@@ -22,9 +21,9 @@
   import FileUpload from "primevue/fileupload";
   import DataTable from "primevue/datatable";
   import Column from "primevue/column";
-  import { uploadFile } from "../services/uploadFile";
+  import { uploadFile } from "@/services/uploadFile";
   import { useToast } from "primevue/usetoast";
-  import Toast from "primevue/toast";
+  import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
   const data = ref([]);
   const columns = ref([]);

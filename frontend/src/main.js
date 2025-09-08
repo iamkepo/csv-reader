@@ -1,10 +1,13 @@
 import { createApp } from 'vue'
-import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import Ripple from 'primevue/ripple';
-import 'primeicons/primeicons.css';
 import ToastService from 'primevue/toastservice';
+
+import App from './App.vue'
+
+import 'primeicons/primeicons.css';
+import '@/assets/style.css';
 
 import router from './router'
 
